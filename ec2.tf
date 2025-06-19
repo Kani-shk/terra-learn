@@ -54,7 +54,7 @@ resource "aws_instance" "pro_instance" {
   security_groups = [ aws_security_group.sec_grp.name ]
   instance_type = var.ec2_instance_type
   ami = var.ec2_ami_id #ubuntu
-  
+  user_data = file( "install_nginx.sh")
   root_block_device {
     volume_size = var.ec2_root_storage_size
     volume_type = "gp3"
