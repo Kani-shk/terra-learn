@@ -52,11 +52,11 @@ resource "aws_security_group" sec_grp{
 resource "aws_instance" "pro_instance" {
   key_name = aws_key_pair.deployer_key.key_name
   security_groups = [ aws_security_group.sec_grp.name ]
-  instance_type = "t2.micro"
-  ami = "ami-0cb91c7de36eed2cb" #ubuntu
+  instance_type = var.ec2_instance_type
+  ami = var.ec2_ami_id #ubuntu
   
   root_block_device {
-    volume_size = 10
+    volume_size = var.ec2_root_storage_size
     volume_type = "gp3"
 }
   tags = {
